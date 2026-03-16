@@ -177,6 +177,9 @@ def index():
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Mixtape</title>
 <link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icon.png">
+<link rel="apple-touch-icon" sizes="192x192" href="/icon.png">
+<link rel="apple-touch-icon" sizes="512x512" href="/icon.png">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{{
@@ -1230,8 +1233,8 @@ def meta_batch():
 
 @app.route("/manifest.json")
 def manifest():
-    if os.path.exists('manifest.json'): return send_from_directory('.','manifest.json')
-    return jsonify({"name":"Mixtape","short_name":"Mixtape","start_url":"/","display":"standalone","background_color":"#0a0a0a","theme_color":"#e8003a"})
+    data={"name":"Mixtape","short_name":"Mixtape","start_url":"/","display":"standalone","background_color":"#0a0a0a","theme_color":"#e8003a","icons":[{"src":"/icon.png","sizes":"192x192","type":"image/png"},{"src":"/icon.png","sizes":"512x512","type":"image/png"}]}
+    return jsonify(data)
 
 @app.route("/sw.js")
 def sw():
